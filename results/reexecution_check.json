@@ -1,0 +1,17 @@
+{
+  "external_input_rerun_success": true,
+  "numeric_and_html_and_png_outputs_identical": true,
+  "checked_files": [
+    "table_4_all_coefficients.csv",
+    "table_3.csv",
+    "figure_1.png",
+    "table_2.csv",
+    "sample_audit.csv",
+    "figure_1_bins.csv",
+    "comparison.csv",
+    "table_4_model_v_label_audit.csv",
+    "replication_results.html",
+    "table_4.csv"
+  ],
+  "original_data_untouched": true
+}
