@@ -2,6 +2,8 @@
 
 **Author:** Rui YUAN, 3036760840. **Course:** ECO6067.
 
+**Repository:** https://github.com/vegetabledog47-cell/eco6067-card-krueger
+
 The project reproduces Card and Krueger (1994), Tables 2-4 and Figure 1, and tests whether the NJ-versus-PA employment change differs between company-owned and franchise restaurants. See **[report.pdf](report.pdf)** for the complete empirical report and **[AI_USE.md](AI_USE.md)** for AI disclosure. The report includes remaining numerical discrepancies and a source inconsistency in Table 4 model v. Do not describe every paper entry as exactly reproduced.
 
 ## Inputs and access

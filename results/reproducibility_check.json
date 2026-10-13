@@ -1,0 +1,30 @@
+{
+  "check": "Clean source checkout with all generated results and reports removed, then rerun",
+  "success": true,
+  "checked_output_count": 22,
+  "checked_files": [
+    "results/comparison.csv",
+    "results/extension_cells.csv",
+    "results/extension_coefficients.csv",
+    "results/extension_composition.csv",
+    "results/extension_models.csv",
+    "results/extension_ownership.png",
+    "results/extension_primary.csv",
+    "results/extension_sensitivity.csv",
+    "results/extension_summary.json",
+    "results/figure_1_bins.csv",
+    "results/figure_1.png",
+    "results/provenance.json",
+    "results/replication_results.html",
+    "results/sample_audit.csv",
+    "results/table_2.csv",
+    "results/table_3.csv",
+    "results/table_4_all_coefficients.csv",
+    "results/table_4_model_v_label_audit.csv",
+    "results/table_4.csv",
+    "results/validation.json",
+    "report.pdf",
+    "report.md"
+  ],
+  "raw_input_unchanged": true
+}
