@@ -1,0 +1,53 @@
+{
+  "question": "Does the NJ-versus-PA employment change differ between company-owned and franchise restaurants?",
+  "primary_sample_n": 384,
+  "covariance": "HC3, t reference with residual degrees of freedom",
+  "primary_controls": [
+    "chain dummies"
+  ],
+  "within_state_shock_clustering": false,
+  "warning": "Only two states; HC3 does not allow arbitrary correlated state-level policy shocks.",
+  "independent_HC3_matrix_check": true,
+  "unadjusted_DDD_identity_check": true,
+  "multiple_testing": "One primary ownership-interaction test; five alternative specifications are sensitivity checks, not independent discoveries.",
+  "primary": [
+    {
+      "contrast": "Franchise DiD",
+      "estimate": 3.181193298137343,
+      "se": 1.9078291714084628,
+      "p": 0.09625707838146146,
+      "ci95_lower": -0.5701261532926378,
+      "ci95_upper": 6.932512749567325,
+      "n": 384,
+      "df_resid": 377,
+      "specification": "Primary chain controls"
+    },
+    {
+      "contrast": "Company owned DiD",
+      "estimate": 2.0395189637573474,
+      "se": 1.5324009611222837,
+      "p": 0.18401627217667332,
+      "ci95_lower": -0.9736048625253528,
+      "ci95_upper": 5.052642790040048,
+      "n": 384,
+      "df_resid": 377,
+      "specification": "Primary chain controls"
+    },
+    {
+      "contrast": "Ownership difference",
+      "estimate": -1.1416743343799958,
+      "se": 2.4197897012562097,
+      "p": 0.6373373186904682,
+      "ci95_lower": -5.899649687063659,
+      "ci95_upper": 3.616301018303668,
+      "n": 384,
+      "df_resid": 377,
+      "specification": "Primary chain controls"
+    }
+  ],
+  "interaction_sensitivity_range": [
+    -1.1416743343799958,
+    1.7760765904804656
+  ],
+  "all_sensitivity_interaction_intervals_include_zero": true
+}

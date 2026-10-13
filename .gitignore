@@ -5,4 +5,4 @@ __pycache__/
 .runtime/
 *.zip
 *.pdf
-!results/figure_1.pdf
+!report.pdf

@@ -1,10 +1,12 @@
-# AI-use record: core replication phase
+# AI-use disclosure
 
-This is a draft factual record of assistance in this chat. The student must review and supplement it before final submission. It does not claim the student has already independently checked every result.
+Author: Rui YUAN, 3036760840. Course: ECO6067. Prepared 13 October 2026.
+
+This record describes assistance in the replication, ownership extension and report. It distinguishes assistant-performed validation from the author's responsibility for the final submission and does not claim unperformed student verification.
 
 ## Assistance used
 
-Codex read the local brief and data dictionary, rendered the scanned original paper to inspect Tables 2-4, Figure 1 and surrounding definitions, and wrote Python code and project documentation. It used a browser and downloaded David Card's official public archive to inspect the author's data and SAS cross-check program. It generated tables, figures, sample audits and comparison files, and maintained local Git commits.
+Codex read the local brief and data dictionary, rendered the scanned original paper to inspect Tables 2-4, Figure 1 and surrounding definitions, and wrote Python code and project documentation. It used a browser and downloaded David Card's official public archive to inspect the author's data and SAS cross-check program. It generated tables, figures, sample audits and comparison files, and maintained Git commits. It proposed an ownership heterogeneity question, implemented the interaction model and sensitivity checks, and drafted the empirical report. The final PDF was rendered and inspected page by page. GitHub CLI was used for repository preparation; course raw data and derived store-level data were excluded from tracked files.
 
 ## Checks performed by the assistant
 
@@ -13,6 +15,8 @@ Codex read the local brief and data dictionary, rendered the scanned original pa
 - Verified OLS coefficients independently with NumPy least squares, and checked figure-bin totals.
 - Re-ran the pipeline from both local and external inputs, with explicit discrepancy reporting.
 - Visually inspected the rendered source tables/footnotes and generated wage figure.
+- Independently verified the HC3 covariance matrix against the sandwich formula and the unadjusted ownership interaction against the four-cell difference.
+- Reported all six ownership specifications, including sign changes and wide intervals, without selecting only statistically significant subgroup estimates.
 
 ## Errors and assumptions corrected or rejected
 
@@ -24,6 +28,6 @@ Codex read the local brief and data dictionary, rendered the scanned original pa
 6. A store-cluster variance estimator for the unequal-sample Table 3 row 3 does not reproduce every published SE. This uncertainty remains disclosed rather than replacing computed SEs with copied values.
 7. Original figure bin edges are not documented. Explicit bins and tail handling were chosen and documented; exact visual identity is not claimed.
 
-## Student review still needed
+## Interpretation and responsibility
 
-The student should verify the economic interpretation, inspect the discrepancy log, run the workflow, understand the equations and sample choices, and add any other AI use before submitting. No independent extension or claim of student verification is included here.
+The ownership interaction is not statistically precise, and adding baseline employment changes its sign. The report discloses these findings, the two-state inference limitation, the missing pre-trend test and remaining replication differences. Neither the assistant's checks nor a nonsignificant test establishes a causal null or equivalence. The author remains responsible for understanding the equations, sample choices and conclusions and for updating this disclosure if further assistance is used.

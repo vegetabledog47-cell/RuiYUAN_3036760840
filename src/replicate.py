@@ -222,7 +222,6 @@ def figure1(d):
     axes[-1].set_xlabel(r'Starting wage bin midpoint (\$); last bin: \$5.50 and above')
     fig.suptitle('Figure 1. Distribution of starting wage rates',fontsize=16)
     fig.savefig(RESULTS/'figure_1.png',dpi=180)
-    fig.savefig(RESULTS/'figure_1.pdf')
     plt.close(fig)
     pd.DataFrame(rows).to_csv(RESULTS/'figure_1_bins.csv',index=False)
 
@@ -256,9 +255,11 @@ def viewer(t2,t3,t4,comparison):
     content=f'''<!doctype html><html lang="en"><meta charset="utf-8"><title>Card-Krueger core replication</title><style>{styles}</style>
     <h1>Card &amp; Krueger (1994): core replication</h1>
     <p>Tables 2-4 and Figure 1. Original input: 410 restaurants; regression sample: 357.</p>
-    <div class="note">No independent extension has been performed. All displayed results are computed from the supplied CSV.
+    <div class="note">This page displays the core replication. The ownership extension and complete discussion are in
+    <a href="../report.pdf">the final report</a> and <a href="extension_primary.csv">the extension table</a>.
+    All displayed results are computed from the supplied CSV.
     Published values are used only for comparison, never to replace computed results.
-    See <a href="../REPLICATION_NOTES.md">replication notes</a> for definitions and discrepancies.</div>
+    See <a href="../report.md">the report source</a> for definitions and discrepancies.</div>
     <h2>Table 2. Means of key variables</h2>{tab(display2)}
     <p>Section 1: store types; section 2: wave 1; section 3: wave 2. Percentages are in percentage points.</p>
     <h2>Table 3. Employment levels and changes</h2>{tab(display3)}
