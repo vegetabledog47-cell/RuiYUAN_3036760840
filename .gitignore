@@ -2,6 +2,7 @@
 data/processed/
 __pycache__/
 .venv/
+.runtime/
 *.zip
 *.pdf
 !results/figure_1.pdf

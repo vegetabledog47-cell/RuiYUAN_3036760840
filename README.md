@@ -22,6 +22,8 @@ The script creates all tables, Figure 1, comparison files, a sample audit, proce
 
 On this computer, the optional isolated workspace dependencies are detected by `powershell -ExecutionPolicy Bypass -File .\run.ps1`. On another computer use the virtual-environment instructions above. A Chinese guide is in `复现说明.md`. Start with `results/replication_results.html` to review the outputs. The HTML file uses the accompanying local PNG, so keep the results folder together.
 
+The local delivery folder can also contain `.runtime/python_packages/`; `run.ps1` detects these dependencies first. They are not tracked by Git and supplement the existing Python installation on this computer. See `开始阅读.md` for the assignment-to-file checklist and remaining final-submission requirements.
+
 After replication, run `python src/validate.py` for independent Welch and within-store DiD checks, closure/sample checks and raw-column integrity checks. Optionally pass `--author-data PATH_TO_OFFICIAL_PUBLIC_DAT` to repeat the numeric equality check against the official archive; this optional archive is not required to reproduce the main results.
 
 The supplied raw data and processed store-level data are ignored by Git. They remain available locally; reviewers obtain the restricted raw input through the course and regenerate the processed data. Keep access to any shared processed data consistent with its license. Git history records development stages. Repository creation/publication and submission are not performed by this workflow.

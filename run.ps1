@@ -7,9 +7,12 @@ try {
     if (Test-Path -LiteralPath $venvPython) { $pythonCommand = $venvPython }
     else {
         $pythonCommand = 'python'
+        $projectPackages = Join-Path $projectRoot '.runtime\python_packages'
         # Optional isolated dependencies installed in this Codex workspace.
         $workspacePackages = Join-Path (Split-Path (Split-Path $projectRoot -Parent) -Parent) 'work\python_packages'
-        if (Test-Path -LiteralPath $workspacePackages) {
+        if (Test-Path -LiteralPath $projectPackages) {
+            $env:PYTHONPATH = $projectPackages + [IO.Path]::PathSeparator + $oldPythonPath
+        } elseif (Test-Path -LiteralPath $workspacePackages) {
             $env:PYTHONPATH = $workspacePackages + [IO.Path]::PathSeparator + $oldPythonPath
         }
     }
