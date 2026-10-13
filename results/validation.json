@@ -1,0 +1,10 @@
+{
+  "raw_columns_preserved": true,
+  "paired_did_independent_welch_check": true,
+  "paired_did_within_store_check": true,
+  "within_store_did": 2.750000000000014,
+  "closures_and_regression_sample_check": true,
+  "figure_totals_check": true,
+  "table4_core_coefficients_check": true,
+  "exact_match_of_all_paper_entries": false
+}

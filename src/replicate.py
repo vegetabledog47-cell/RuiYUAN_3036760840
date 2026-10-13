@@ -46,9 +46,6 @@ def prepare(path):
     assert not d[['STATE','SHEET']].duplicated().any(), 'State/sheet keys must be unique'
     d['store_id'] = d.STATE.astype(str)+'_'+d.SHEET.astype(str)
     assert d.STATE.value_counts().to_dict() == {1: 331, 0: 79}
-    # One renovation closure reports a wage despite missing employment. Exclude
-    # non-operating stores from wave-2 wage and operating-characteristic summaries.
-    d.loc[d.STATUS2.ne(1), ['WAGE_ST2','SPECIAL2','HRSOPEN2','PSODA2','PFRY2','PENTREE2']] = np.nan
     for suffix in ['', '2']:
         d['fte'+suffix] = d['EMPFT'+suffix] + d['NMGRS'+suffix] + .5*d['EMPPT'+suffix]
         d['fulltime_pct'+suffix] = 100*d['EMPFT'+suffix]/d['fte'+suffix]
@@ -163,7 +160,10 @@ def table4(d):
     for c in [2,3,4]: a['chain'+str(c)]=a.CHAIN.eq(c).astype(float)
     controls=['chain2','chain3','chain4','CO_OWNED']
     regions=['SOUTHJ','CENTRALJ','PA1','PA2'] # North NJ is the reference region.
-    specifications=[['STATE'],['STATE']+controls,['gap'],['gap']+controls,['gap']+controls+regions]
+    # Author check.sas omits ownership in (v), despite the printed table saying
+    # chain/ownership controls are included. Following that code reproduces (v).
+    specifications=[['STATE'],['STATE']+controls,['gap'],['gap']+controls,
+                    ['gap']+controls[:3]+regions]
     original_b=[2.33,2.30,15.65,14.92,11.91]
     original_se=[1.19,1.20,6.08,6.21,7.39]
     original_ser=[8.79,8.78,8.76,8.76,8.75]
@@ -179,7 +179,7 @@ def table4(d):
             p=float(model.f_test(restriction).pvalue)
         b=float(model.params[key]); se=float(model.bse[key]); ser=float(np.sqrt(model.mse_resid))
         rows.append(dict(model=i+1,regressor=key,estimate=b,se=se,n=int(model.nobs),
-            residual_se=ser,controls_p=p,chain_ownership=i in [1,3,4],region_controls=i==4,
+            residual_se=ser,controls_p=p,chain_controls=i in [1,3,4],ownership_control=i in [1,3],region_controls=i==4,
             ci95_lower=float(model.conf_int().loc[key,0]),ci95_upper=float(model.conf_int().loc[key,1])))
         for term in model.params.index:
             coefficients.append(dict(model=i+1,term=term,estimate=float(model.params[term]),
@@ -188,6 +188,12 @@ def table4(d):
                                     ('residual_se',ser,original_ser[i]),('controls_p',p,original_p[i])]:
             if original is not None: compare('Table 4',str(i+1),col,actual,original)
     pd.DataFrame(coefficients).to_csv(RESULTS/'table_4_all_coefficients.csv',index=False)
+    # Audit the discrepancy between the printed label and the author's code.
+    alternative=sm.OLS(a.delta,sm.add_constant(a[['gap']+controls+regions].astype(float))).fit()
+    pd.DataFrame([dict(specification='Printed-label interpretation: add ownership to model v',
+        estimate=float(alternative.params['gap']),se=float(alternative.bse['gap']),
+        n=int(alternative.nobs),residual_se=float(np.sqrt(alternative.mse_resid)))]).to_csv(
+        RESULTS/'table_4_model_v_label_audit.csv',index=False)
     return pd.DataFrame(rows)
 
 
@@ -213,7 +219,7 @@ def figure1(d):
         ax.set_xticks(np.arange(len(labels)),labels,rotation=45)
         ax.grid(axis='y',alpha=.2); ax.set_axisbelow(True)
         ax.legend(frameon=False)
-    axes[-1].set_xlabel('Starting wage bin midpoint ($); last bin: $5.50 and above')
+    axes[-1].set_xlabel(r'Starting wage bin midpoint (\$); last bin: \$5.50 and above')
     fig.suptitle('Figure 1. Distribution of starting wage rates',fontsize=16)
     fig.savefig(RESULTS/'figure_1.png',dpi=180)
     fig.savefig(RESULTS/'figure_1.pdf')
@@ -260,7 +266,8 @@ def viewer(t2,t3,t4,comparison):
     Low/mid/high: NJ baseline wage $4.25 / $4.26-$4.99 / at least $5.00.</p>
     <h3>Table 3 standard errors</h3>{tab(se3)}
     <h2>Table 4. Change in FTE employment</h2>{tab(t4)}
-    <p>Conventional OLS standard errors, as in the original table. Controls p: joint F test excluding all added controls.</p>
+    <p>Conventional OLS standard errors, as in the original table. Controls p: joint F test excluding all added controls.
+    Model (v) follows the author's public SAS code and omits ownership, despite the published combined controls label.</p>
     <h2>Figure 1. Starting wages</h2><img src="figure_1.png" alt="Wage distributions by state and survey wave">
     <p>Explicit ten-cent bins and top-coded tail; the original publication does not specify exact bin edges.
     The broad distribution is reproduced; pixel-level/bar-level identity is not claimed.</p>

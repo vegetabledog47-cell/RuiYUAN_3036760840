@@ -176,13 +176,13 @@
     <tr>
       <td>3</td>
       <td>Starting wage</td>
-      <td>5.0809</td>
+      <td>5.0808</td>
       <td>0.0059</td>
-      <td>317</td>
+      <td>318</td>
       <td>4.6175</td>
       <td>0.0424</td>
       <td>71</td>
-      <td>10.8213</td>
+      <td>10.8197</td>
     </tr>
     <tr>
       <td>3</td>
@@ -198,35 +198,35 @@
     <tr>
       <td>3</td>
       <td>Wage = 5.05 (percentage)</td>
-      <td>85.1964</td>
-      <td>1.9550</td>
+      <td>85.4985</td>
+      <td>1.9383</td>
       <td>331</td>
       <td>1.2658</td>
       <td>1.2658</td>
       <td>79</td>
-      <td>36.0374</td>
+      <td>36.3848</td>
     </tr>
     <tr>
       <td>3</td>
       <td>Price of full meal</td>
-      <td>3.4168</td>
-      <td>0.0365</td>
-      <td>304</td>
+      <td>3.4148</td>
+      <td>0.0364</td>
+      <td>305</td>
       <td>3.0266</td>
       <td>0.0672</td>
       <td>71</td>
-      <td>5.1033</td>
+      <td>5.0784</td>
     </tr>
     <tr>
       <td>3</td>
       <td>Hours open (weekday)</td>
-      <td>14.4148</td>
-      <td>0.1523</td>
-      <td>320</td>
+      <td>14.4198</td>
+      <td>0.1519</td>
+      <td>321</td>
       <td>14.6538</td>
       <td>0.3270</td>
       <td>78</td>
-      <td>-0.6626</td>
+      <td>-0.6492</td>
     </tr>
     <tr>
       <td>3</td>
@@ -410,7 +410,8 @@
       <th>n</th>
       <th>residual_se</th>
       <th>controls_p</th>
-      <th>chain_ownership</th>
+      <th>chain_controls</th>
+      <th>ownership_control</th>
       <th>region_controls</th>
       <th>ci95_lower</th>
       <th>ci95_upper</th>
@@ -427,6 +428,7 @@
       <td>NaN</td>
       <td>False</td>
       <td>False</td>
+      <td>False</td>
       <td>-0.0176</td>
       <td>4.6693</td>
     </tr>
@@ -438,6 +440,7 @@
       <td>357</td>
       <td>8.7847</td>
       <td>0.3443</td>
+      <td>True</td>
       <td>True</td>
       <td>False</td>
       <td>-0.0474</td>
@@ -453,6 +456,7 @@
       <td>NaN</td>
       <td>False</td>
       <td>False</td>
+      <td>False</td>
       <td>3.6951</td>
       <td>27.6107</td>
     </tr>
@@ -465,6 +469,7 @@
       <td>8.7592</td>
       <td>0.4374</td>
       <td>True</td>
+      <td>True</td>
       <td>False</td>
       <td>2.7114</td>
       <td>27.1200</td>
@@ -472,24 +477,26 @@
     <tr>
       <td>5</td>
       <td>gap</td>
-      <td>11.9792</td>
-      <td>7.4191</td>
+      <td>11.9131</td>
+      <td>7.3944</td>
       <td>357</td>
-      <td>8.7525</td>
-      <td>0.4046</td>
+      <td>8.7402</td>
+      <td>0.3075</td>
       <td>True</td>
+      <td>False</td>
       <td>True</td>
-      <td>-2.6129</td>
-      <td>26.5713</td>
+      <td>-2.6303</td>
+      <td>26.4564</td>
     </tr>
   </tbody>
 </table>
-    <p>Conventional OLS standard errors, as in the original table. Controls p: joint F test excluding all added controls.</p>
+    <p>Conventional OLS standard errors, as in the original table. Controls p: joint F test excluding all added controls.
+    Model (v) follows the author's public SAS code and omits ownership, despite the published combined controls label.</p>
     <h2>Figure 1. Starting wages</h2><img src="figure_1.png" alt="Wage distributions by state and survey wave">
     <p>Explicit ten-cent bins and top-coded tail; the original publication does not specify exact bin edges.
     The broad distribution is reproduced; pixel-level/bar-level identity is not claimed.</p>
     <h2>Comparison with the published tables</h2>
-    <p>165 / 186 entries fall within the original displayed rounding interval.
+    <p>164 / 186 entries fall within the original displayed rounding interval.
     Differences outside that interval appear below; all comparisons are in <a href="comparison.csv">comparison.csv</a>.</p>
     <table class="dataframe">
   <thead>
@@ -520,10 +527,32 @@
     <tr>
       <td>Table 2</td>
       <td>3. Wage = 5.05 (percentage)</td>
+      <td>NJ</td>
+      <td>85.4985</td>
+      <td>85.2000</td>
+      <td>0.2985</td>
+      <td>1</td>
+      <td>False</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Table 2</td>
+      <td>3. Wage = 5.05 (percentage)</td>
       <td>t</td>
-      <td>36.0374</td>
+      <td>36.3848</td>
       <td>36.1000</td>
-      <td>-0.0626</td>
+      <td>0.2848</td>
+      <td>1</td>
+      <td>False</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Table 2</td>
+      <td>3. Wage = 5.05 (percentage)</td>
+      <td>NJ_se</td>
+      <td>1.9383</td>
+      <td>2.0000</td>
+      <td>-0.0617</td>
       <td>1</td>
       <td>False</td>
       <td></td>
@@ -531,21 +560,10 @@
     <tr>
       <td>Table 2</td>
       <td>3. Price of full meal</td>
-      <td>NJ</td>
-      <td>3.4168</td>
-      <td>3.4100</td>
-      <td>0.0068</td>
-      <td>2</td>
-      <td>False</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Table 2</td>
-      <td>3. Price of full meal</td>
       <td>t</td>
-      <td>5.1033</td>
+      <td>5.0784</td>
       <td>5.0000</td>
-      <td>0.1033</td>
+      <td>0.0784</td>
       <td>1</td>
       <td>False</td>
       <td></td>
@@ -554,9 +572,9 @@
       <td>Table 2</td>
       <td>3. Hours open (weekday)</td>
       <td>t</td>
-      <td>-0.6626</td>
+      <td>-0.6492</td>
       <td>-0.8000</td>
-      <td>0.1374</td>
+      <td>0.1508</td>
       <td>1</td>
       <td>False</td>
       <td></td>
@@ -718,10 +736,10 @@
     <tr>
       <td>Table 4</td>
       <td>5</td>
-      <td>estimate</td>
-      <td>11.9792</td>
-      <td>11.9100</td>
-      <td>0.0692</td>
+      <td>residual_se</td>
+      <td>8.7402</td>
+      <td>8.7500</td>
+      <td>-0.0098</td>
       <td>2</td>
       <td>False</td>
       <td></td>
@@ -729,10 +747,10 @@
     <tr>
       <td>Table 4</td>
       <td>5</td>
-      <td>se</td>
-      <td>7.4191</td>
-      <td>7.3900</td>
-      <td>0.0291</td>
+      <td>controls_p</td>
+      <td>0.3075</td>
+      <td>0.4000</td>
+      <td>-0.0925</td>
       <td>2</td>
       <td>False</td>
       <td></td>
