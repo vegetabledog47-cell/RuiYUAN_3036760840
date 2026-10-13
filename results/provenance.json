@@ -1,0 +1,18 @@
+{
+  "input_filename": "public.csv",
+  "input_sha256": "45e6f4ac4928f7c9fcc2585a45e0467ecaa039f0b241f4c5a26cd290fd8e772b",
+  "rows": 410,
+  "columns_raw": 46,
+  "python": "3.14.0",
+  "libraries": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0",
+    "matplotlib": "3.10.7"
+  },
+  "scope": "Tables 2-4 and Figure 1 only; no independent extension",
+  "table4_n": 357,
+  "table4_delta_mean": -0.23753501400560229,
+  "table4_delta_sd": 8.825484522270923
+}

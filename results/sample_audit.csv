@@ -1,0 +1,17 @@
+state,sample,n
+PA,all,79
+PA,wave1_fte,77
+PA,wave2_fte,77
+PA,balanced,75
+PA,temporary_zero_balanced,75
+PA,table4,67
+PA,permanent_closure,1
+PA,temporary_closure,0
+NJ,all,331
+NJ,wave1_fte,321
+NJ,wave2_fte,319
+NJ,balanced,309
+NJ,temporary_zero_balanced,313
+NJ,table4,290
+NJ,permanent_closure,5
+NJ,temporary_closure,4
