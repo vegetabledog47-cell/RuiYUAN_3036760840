@@ -1,7 +1,7 @@
 # AI use disclosure
 
-**Author:** Rui YUAN, 3036760840  
-**Course:** ECON 6067  
+**Author:** Rui YUAN, 3036760840
+**Course:** ECON 6067
 **Updated:** 14 October 2026
 
 ## Project direction and AI assistance
