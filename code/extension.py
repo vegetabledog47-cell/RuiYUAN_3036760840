@@ -10,7 +10,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 ROOT=Path(__file__).resolve().parents[1]
-RESULTS=ROOT/'results'
+RESULTS=ROOT/'outputs/tables'
 
 
 def fit_model(a, controls, outcome='delta'):
@@ -93,7 +93,7 @@ def main():
     ax.set_xlabel('Change in FTE employees relative to PA (95% HC3 intervals)')
     ax.set_title('Ownership heterogeneity after the minimum wage increase',loc='left',fontsize=13)
     ax.grid(axis='x',alpha=.2)
-    fig.savefig(RESULTS/'extension_ownership.png',dpi=180)
+    fig.savefig(ROOT/'outputs/figures/extension_ownership.png',dpi=180)
     plt.close(fig)
     summary={'question':'Does the NJ-versus-PA employment change differ between company-owned and franchise restaurants?',
         'primary_sample_n':len(a),'covariance':'HC3, t reference with residual degrees of freedom',

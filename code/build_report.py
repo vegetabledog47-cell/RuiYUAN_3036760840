@@ -11,7 +11,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image, PageBreak, KeepTogether
 
 ROOT=Path(__file__).resolve().parents[1]
-RES=ROOT/'results'
+RES=ROOT/'outputs/tables'
 WIDTH=A4[0]-108
 styles=getSampleStyleSheet()
 styles.add(ParagraphStyle(name='ReportTitle',fontName='Times-Bold',fontSize=21,leading=25,spaceAfter=14,textColor=colors.black))
@@ -68,9 +68,9 @@ def main():
         md.append('')
     def picture(name,width):
         from PIL import Image as PILImage
-        with PILImage.open(RES/name) as im: w,ht=im.size
-        story.append(Image(str(RES/name),width=width,height=width*ht/w))
-        story.append(Spacer(1,8)); md.append(f'![{name}](results/{name})\n')
+        with PILImage.open(ROOT/'outputs/figures'/name) as im: w,ht=im.size
+        story.append(Image(str(ROOT/'outputs/figures'/name),width=width,height=width*ht/w))
+        story.append(Spacer(1,8)); md.append(f'![{name}](outputs/figures/{name})\n')
 
     title='Minimum Wage and Employment in Fast Food Restaurants'
     story.append(Paragraph(title,styles['ReportTitle']))
@@ -194,9 +194,9 @@ def main():
     p('The assigned core results broadly reproduce the original finding of no observed relative employment decline in NJ, while retaining transparent differences in printed statistics and one ambiguous model specification. The extension contributes a direct, economically motivated ownership comparison rather than more controls alone. Its main lesson is limited precision and sensitivity to baseline composition: this sample does not support a firm conclusion about ownership-specific responses. More pre-policy observations, additional policy comparisons and richer restaurant characteristics would be needed to strengthen that inference.')
 
     page(); h('6 Reproducibility and AI disclosure')
-    p('The repository contains an end-to-end Python workflow, dependency requirements, generated aggregate results, sample audits and the report source. With the documented public.csv input in 01_DID/data/, run.ps1 or src/run_all.py regenerates the core replication, ownership extension, validation outputs and report without editing data or code. Restricted course raw data, processed store-level data and local dependency files are ignored by Git; processed data are regenerated locally. Original papers and course download links are not redistributed. Git commits record meaningful stages rather than one final upload.')
+    p('The repository contains an end-to-end Python workflow, dependency requirements, generated aggregate results, sample audits and the report source. With the documented public.csv input in 01_DID/data/, run.ps1 or code/run_all.py regenerates the core replication, ownership extension, validation outputs and report without editing data or code. Restricted course raw data, processed store-level data and local dependency files are ignored by Git; processed data are regenerated locally. Original papers and course download links are not redistributed. Git commits record meaningful stages rather than one final upload.')
     p('Validation checks dimensions and state counts, state/sheet keys, closure treatment and the regression sample. The paired DiD is independently recomputed with Welch inference and a two-period within-store regression. OLS coefficients are compared with NumPy least squares. Extension HC3 covariance is checked against its matrix formula, and the unadjusted ownership interaction against the four-cell identity. Every wage observation enters a bin and every state-wave percentage total is 100. Repeated pipeline outputs are checked for deterministic equality. These checks establish implementation consistency, not the causal assumptions.')
-    p('Codex assisted with reading the brief and data dictionary, visually inspecting the scanned paper, locating the official archive, coding, calculations, documentation and report drafting. AI outputs were checked using the tests above and source comparisons. Corrected or rejected suggestions included using SHEET as a global identifier, a headcount-based full-time percentage, dropping permanent closures because follow-up wages are missing, and deleting reported operating variables solely to improve a match. The model-v source conflict and unmatched row-3 SEs were retained explicitly. The full disclosure in AI_USE.md separates assistant-performed checks from the student\'s responsibility for the final submission.')
+    p('Codex assisted with reading the brief and data dictionary, visually inspecting the scanned paper, locating the official archive, coding, calculations, documentation and report drafting. AI outputs were checked using the tests above and source comparisons. Corrected or rejected suggestions included using SHEET as a global identifier, a headcount-based full-time percentage, dropping permanent closures because follow-up wages are missing, and deleting reported operating variables solely to improve a match. The model-v source conflict and unmatched row-3 SEs were retained explicitly. The full disclosure in AI_USE_DISCLOSURE.md separates assistant-performed checks from the student\'s responsibility for the final submission.')
     h('References')
     refs=[
         'Card, David, and Alan B. Krueger. 1994. Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania. American Economic Review 84(4): 772-793.',
@@ -215,11 +215,11 @@ def main():
     table('Entries outside the printed rounding interval',['Table','Row or variable','Column','Computed','Printed','Difference'],rows,
         [34,WIDTH-268,83,53,45,53],small=True)
     p('Comparison tolerance is half a unit in the last displayed decimal, with a numerical epsilon. The complete comparison.csv includes matches as well. Table 2 wage-point differences involve denominator and closure-reporting conventions; Table 3 row-3 errors use the disclosed influence estimator; model-v diagnostics involve the documented source conflict. Other small differences are retained without claiming a known cause.',note=True)
-    p('Complete observed counts, all model coefficients, official-source verification hashes, validation checks and both model-v interpretations are available in results/. No published entry is substituted into the computed result tables.',note=True)
+    p('Complete observed counts, all model coefficients, official-source verification hashes, validation checks and both model-v interpretations are available in outputs/tables/. No published entry is substituted into the computed result tables.',note=True)
 
     def footer(canvas,doc):
         canvas.setFont('Times-Roman',8)
-        canvas.drawString(54,32,'Rui YUAN | ECO6067 | Replication and extension')
+        canvas.drawString(54,32,'Rui YUAN | ECON 6067 | Replication and extension')
         canvas.drawRightString(A4[0]-54,32,str(doc.page))
     document=SimpleDocTemplate(str(ROOT/'report.pdf'),pagesize=A4,rightMargin=54,leftMargin=54,
         topMargin=45,bottomMargin=47,title=title,author=info['author'],invariant=1)

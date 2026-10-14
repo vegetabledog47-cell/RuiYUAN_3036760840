@@ -1,14 +1,14 @@
 # AI use disclosure
 
 **Author:** Rui YUAN, 3036760840  
-**Course:** ECO6067  
+**Course:** ECON 6067  
 **Updated:** 14 October 2026
 
 ## Project direction and AI assistance
 
 I supplied the assignment brief, original paper and course data package, and requested a staged workflow: complete the assigned core replication before undertaking an extension. I also requested explanations of the methods, results and development history, and a review of the AI disclosure against the assignment requirements. I specified the local delivery arrangements and repository visibility.
 
-Codex provided substantial assistance throughout the project. This included interpreting the brief and data dictionary, inspecting the scanned paper, retrieving the author's public data and SAS program, writing the analysis and validation code, and generating tables and figures. Codex proposed the ownership heterogeneity question and implemented the interaction model and sensitivity checks. It also drafted and formatted the report, prepared documentation and maintained Git records. The report layout was inspected page by page. Restricted course data and derived store-level data were excluded from the GitHub repository.
+Codex provided substantial assistance throughout the project. This included interpreting the brief and data dictionary, inspecting the scanned paper, retrieving the author's public data and SAS program, writing the analysis and validation code, and generating tables and figures. Codex proposed the ownership heterogeneity question and implemented the interaction model and sensitivity checks. It also drafted and formatted the report, prepared documentation and maintained Git records. At my request, Codex checked the final Moodle notice and example repository, aligned the submission layout, documented a reusable skill, reran the workflow and prepared the GitHub submission settings. The report layout was inspected page by page. Restricted course data and derived store-level data were excluded from the GitHub repository.
 
 ## Validation of AI generated outputs
 

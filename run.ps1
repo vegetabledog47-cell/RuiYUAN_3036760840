@@ -16,7 +16,7 @@ try {
             $env:PYTHONPATH = $workspacePackages + [IO.Path]::PathSeparator + $oldPythonPath
         }
     }
-    $replicationScript = Join-Path $projectRoot 'src\run_all.py'
+    $replicationScript = Join-Path $projectRoot 'code\run_all.py'
     if ($InputCsv) { & $pythonCommand $replicationScript --input $InputCsv }
     else { & $pythonCommand $replicationScript }
     if ($LASTEXITCODE -ne 0) { throw "Replication failed (exit $LASTEXITCODE)." }

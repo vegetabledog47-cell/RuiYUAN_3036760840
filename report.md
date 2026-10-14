@@ -2,7 +2,7 @@
 
 Replication of Card and Krueger 1994 and an ownership heterogeneity extension
 
-Rui YUAN | Student ID 3036760840 | ECO6067 | 13 October 2026
+Rui YUAN | Student ID 3036760840 | ECON 6067 | 13 October 2026
 
 ## Abstract
 
@@ -148,7 +148,7 @@ Across Tables 2-4, 164 of 186 transcribed numeric entries fall in their printed 
 
 ## 3 4 Starting wage distributions
 
-![figure_1.png](results/figure_1.png)
+![figure_1.png](outputs/figures/figure_1.png)
 
 Figure 1  Distribution of starting wages by state and survey wave. Each state-wave denominator is its number of observed wages. Bars use half-open ten-cent bins from [4.20, 4.30) through [5.40, 5.50), with wages at least $5.50 pooled in the last bar. Integer cents avoid floating-point boundary errors.
 
@@ -201,7 +201,7 @@ A causal ownership contrast requires comparable untreated NJ-minus-PA trends acr
 
 Sample N = 384; residual degrees of freedom = 377. All contrasts come from the same chain-controlled regression. The ownership difference is company-owned DiD minus franchise DiD. Full coefficients and conventional-OLS inference are in extension_coefficients.csv.
 
-![extension_ownership.png](results/extension_ownership.png)
+![extension_ownership.png](outputs/figures/extension_ownership.png)
 
 Figure 2  Estimated employment contrasts with 95% HC3 intervals. Zero is included in all three intervals.
 
@@ -242,11 +242,11 @@ The assigned core results broadly reproduce the original finding of no observed 
 
 ## 6 Reproducibility and AI disclosure
 
-The repository contains an end-to-end Python workflow, dependency requirements, generated aggregate results, sample audits and the report source. With the documented public.csv input in 01_DID/data/, run.ps1 or src/run_all.py regenerates the core replication, ownership extension, validation outputs and report without editing data or code. Restricted course raw data, processed store-level data and local dependency files are ignored by Git; processed data are regenerated locally. Original papers and course download links are not redistributed. Git commits record meaningful stages rather than one final upload.
+The repository contains an end-to-end Python workflow, dependency requirements, generated aggregate results, sample audits and the report source. With the documented public.csv input in 01_DID/data/, run.ps1 or code/run_all.py regenerates the core replication, ownership extension, validation outputs and report without editing data or code. Restricted course raw data, processed store-level data and local dependency files are ignored by Git; processed data are regenerated locally. Original papers and course download links are not redistributed. Git commits record meaningful stages rather than one final upload.
 
 Validation checks dimensions and state counts, state/sheet keys, closure treatment and the regression sample. The paired DiD is independently recomputed with Welch inference and a two-period within-store regression. OLS coefficients are compared with NumPy least squares. Extension HC3 covariance is checked against its matrix formula, and the unadjusted ownership interaction against the four-cell identity. Every wage observation enters a bin and every state-wave percentage total is 100. Repeated pipeline outputs are checked for deterministic equality. These checks establish implementation consistency, not the causal assumptions.
 
-Codex assisted with reading the brief and data dictionary, visually inspecting the scanned paper, locating the official archive, coding, calculations, documentation and report drafting. AI outputs were checked using the tests above and source comparisons. Corrected or rejected suggestions included using SHEET as a global identifier, a headcount-based full-time percentage, dropping permanent closures because follow-up wages are missing, and deleting reported operating variables solely to improve a match. The model-v source conflict and unmatched row-3 SEs were retained explicitly. The full disclosure in AI_USE.md separates assistant-performed checks from the student's responsibility for the final submission.
+Codex assisted with reading the brief and data dictionary, visually inspecting the scanned paper, locating the official archive, coding, calculations, documentation and report drafting. AI outputs were checked using the tests above and source comparisons. Corrected or rejected suggestions included using SHEET as a global identifier, a headcount-based full-time percentage, dropping permanent closures because follow-up wages are missing, and deleting reported operating variables solely to improve a match. The model-v source conflict and unmatched row-3 SEs were retained explicitly. The full disclosure in AI_USE_DISCLOSURE.md separates assistant-performed checks from the student's responsibility for the final submission.
 
 ## References
 
@@ -294,4 +294,4 @@ ECO6067. Individual Project: AI-Assisted Empirical Paper Replication and Extensi
 
 Comparison tolerance is half a unit in the last displayed decimal, with a numerical epsilon. The complete comparison.csv includes matches as well. Table 2 wage-point differences involve denominator and closure-reporting conventions; Table 3 row-3 errors use the disclosed influence estimator; model-v diagnostics involve the documented source conflict. Other small differences are retained without claiming a known cause.
 
-Complete observed counts, all model coefficients, official-source verification hashes, validation checks and both model-v interpretations are available in results/. No published entry is substituted into the computed result tables.
+Complete observed counts, all model coefficients, official-source verification hashes, validation checks and both model-v interpretations are available in outputs/tables/. No published entry is substituted into the computed result tables.

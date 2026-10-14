@@ -1,8 +1,11 @@
 01_DID/
-data/processed/
+data/processed/*
+!data/processed/README.md
 __pycache__/
 .venv/
 .runtime/
 *.zip
 *.pdf
 !report.pdf
+data/raw/*
+!data/raw/README.md

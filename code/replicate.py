@@ -18,7 +18,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
-RESULTS = ROOT / 'results'
+RESULTS = ROOT / 'outputs/tables'
 COMPARISONS = []
 
 
@@ -221,7 +221,7 @@ def figure1(d):
         ax.legend(frameon=False)
     axes[-1].set_xlabel(r'Starting wage bin midpoint (\$); last bin: \$5.50 and above')
     fig.suptitle('Figure 1. Distribution of starting wage rates',fontsize=16)
-    fig.savefig(RESULTS/'figure_1.png',dpi=180)
+    fig.savefig(ROOT/'outputs/figures/figure_1.png',dpi=180)
     plt.close(fig)
     pd.DataFrame(rows).to_csv(RESULTS/'figure_1_bins.csv',index=False)
 
@@ -256,10 +256,10 @@ def viewer(t2,t3,t4,comparison):
     <h1>Card &amp; Krueger (1994): core replication</h1>
     <p>Tables 2-4 and Figure 1. Original input: 410 restaurants; regression sample: 357.</p>
     <div class="note">This page displays the core replication. The ownership extension and complete discussion are in
-    <a href="../report.pdf">the final report</a> and <a href="extension_primary.csv">the extension table</a>.
+    <a href="../../report.pdf">the final report</a> and <a href="extension_primary.csv">the extension table</a>.
     All displayed results are computed from the supplied CSV.
     Published values are used only for comparison, never to replace computed results.
-    See <a href="../report.md">the report source</a> for definitions and discrepancies.</div>
+    See <a href="../../report.md">the report source</a> for definitions and discrepancies.</div>
     <h2>Table 2. Means of key variables</h2>{tab(display2)}
     <p>Section 1: store types; section 2: wave 1; section 3: wave 2. Percentages are in percentage points.</p>
     <h2>Table 3. Employment levels and changes</h2>{tab(display3)}
@@ -269,7 +269,7 @@ def viewer(t2,t3,t4,comparison):
     <h2>Table 4. Change in FTE employment</h2>{tab(t4)}
     <p>Conventional OLS standard errors, as in the original table. Controls p: joint F test excluding all added controls.
     Model (v) follows the author's public SAS code and omits ownership, despite the published combined controls label.</p>
-    <h2>Figure 1. Starting wages</h2><img src="figure_1.png" alt="Wage distributions by state and survey wave">
+    <h2>Figure 1. Starting wages</h2><img src="../figures/figure_1.png" alt="Wage distributions by state and survey wave">
     <p>Explicit ten-cent bins and top-coded tail; the original publication does not specify exact bin edges.
     The broad distribution is reproduced; pixel-level/bar-level identity is not claimed.</p>
     <h2>Comparison with the published tables</h2>
@@ -287,6 +287,7 @@ def main():
     if not args.input.is_file():
         parser.error('Place the course CSV at 01_DID/data/public.csv, or pass --input PATH.')
     RESULTS.mkdir(parents=True,exist_ok=True)
+    (ROOT/'outputs/figures').mkdir(parents=True,exist_ok=True)
     d=prepare(args.input)
     processed=ROOT/'data'/'processed'; processed.mkdir(parents=True,exist_ok=True)
     d.to_csv(processed/'analysis_sample.csv',index=False)

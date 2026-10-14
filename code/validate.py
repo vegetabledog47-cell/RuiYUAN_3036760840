@@ -28,7 +28,7 @@ def main():
     independent_t=stats.ttest_ind(nj,pa,equal_var=False)
     observed_did=nj.mean()-pa.mean()
     independent_se=observed_did/independent_t.statistic
-    t3=pd.read_csv(ROOT/'results/table_3.csv')
+    t3=pd.read_csv(ROOT/'outputs/tables/table_3.csv')
     target=t3[(t3.row==4)&t3.group.eq('NJ-PA')].iloc[0]
     np.testing.assert_allclose([target.estimate,target.se],[observed_did,independent_se],atol=1e-12)
     # Independent two-period within-store transformation, rather than change regression.
@@ -38,11 +38,11 @@ def main():
     interaction_within=np.repeat(state.to_numpy(),2)*post_within
     within=sm.OLS(y_within,np.column_stack([post_within,interaction_within])).fit()
     np.testing.assert_allclose(within.params[1],target.estimate,atol=1e-12)
-    t4=pd.read_csv(ROOT/'results/table_4.csv')
+    t4=pd.read_csv(ROOT/'outputs/tables/table_4.csv')
     assert t4.n.eq(357).all()
     assert processed.loc[processed.STATUS2.eq(3),'table4_sample'].all()
     assert not processed.loc[processed.STATUS2.isin([2,4,5]),'table4_sample'].any()
-    bins=pd.read_csv(ROOT/'results/figure_1_bins.csv')
+    bins=pd.read_csv(ROOT/'outputs/tables/figure_1_bins.csv')
     np.testing.assert_allclose(bins.groupby(['wave','state']).percent.sum(),100,atol=1e-12)
     assert not raw.duplicated().any()
     # This numerical assertion targets the substantive published estimate, not every
@@ -52,7 +52,7 @@ def main():
         'paired_did_within_store_check':True,'within_store_did':float(within.params[1]),
         'closures_and_regression_sample_check':True,'figure_totals_check':True,
         'table4_core_coefficients_check':True,'exact_match_of_all_paper_entries':False}
-    (ROOT/'results/validation.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+    (ROOT/'outputs/tables/validation.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
     if args.author_data:
         official=pd.read_csv(args.author_data,sep=r'\s+',header=None,na_values='.')
         assert official.shape==raw.shape
@@ -64,7 +64,7 @@ def main():
             'rows':410,'columns':46,'numeric_cells_including_missing':18860,
             'numeric_matrix_and_missingness_exactly_equal':True,
             'note':'Column order checked against official codebook and SAS INPUT list; no source data republished.'}
-        (ROOT/'results/source_verification.json').write_text(json.dumps(source,indent=2),encoding='utf-8')
+        (ROOT/'outputs/tables/source_verification.json').write_text(json.dumps(source,indent=2),encoding='utf-8')
         summary['official_data_numeric_equality_check']=True
     print(json.dumps(summary,indent=2))
 
