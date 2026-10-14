@@ -1,33 +1,37 @@
-# AI-use disclosure
+# AI use disclosure
 
-Author: Rui YUAN, 3036760840. Course: ECO6067. Prepared 13 October 2026.
+**Author:** Rui YUAN, 3036760840  
+**Course:** ECO6067  
+**Updated:** 14 October 2026
 
-This record describes assistance in the replication, ownership extension and report. It distinguishes assistant-performed validation from the author's responsibility for the final submission and does not claim unperformed student verification.
+## Project direction and AI assistance
 
-## Assistance used
+I supplied the assignment brief, original paper and course data package, and requested a staged workflow: complete the assigned core replication before undertaking an extension. I also requested explanations of the methods, results and development history, and a review of the AI disclosure against the assignment requirements. I specified the local delivery arrangements and repository visibility.
 
-Codex read the local brief and data dictionary, rendered the scanned original paper to inspect Tables 2-4, Figure 1 and surrounding definitions, and wrote Python code and project documentation. It used a browser and downloaded David Card's official public archive to inspect the author's data and SAS cross-check program. It generated tables, figures, sample audits and comparison files, and maintained Git commits. It proposed an ownership heterogeneity question, implemented the interaction model and sensitivity checks, and drafted the empirical report. The final PDF was rendered and inspected page by page. GitHub CLI was used for repository preparation; course raw data and derived store-level data were excluded from tracked files.
+Codex provided substantial assistance throughout the project. This included interpreting the brief and data dictionary, inspecting the scanned paper, retrieving the author's public data and SAS program, writing the analysis and validation code, and generating tables and figures. Codex proposed the ownership heterogeneity question and implemented the interaction model and sensitivity checks. It also drafted and formatted the report, prepared documentation and maintained Git records. The report layout was inspected page by page. Restricted course data and derived store-level data were excluded from the GitHub repository.
 
-## Checks performed by the assistant
+## Validation of AI generated outputs
 
-- Compared the complete course CSV with the author's original public data; values and missingness match.
-- Checked sample sizes, permanent versus temporary closures, missing employment components, wage-group membership, and the permanent-closure exception for the Table 4 wage requirement.
-- Verified OLS coefficients independently with NumPy least squares, and checked figure-bin totals.
-- Re-ran the pipeline from both local and external inputs, with explicit discrepancy reporting.
-- Visually inspected the rendered source tables/footnotes and generated wage figure.
-- Independently verified the HC3 covariance matrix against the sandwich formula and the unadjusted ownership interaction against the four-cell difference.
-- Reported all six ownership specifications, including sign changes and wide intervals, without selecting only statistically significant subgroup estimates.
+Codex performed source comparisons and implemented numerical checks within the workflow:
 
-## Errors and assumptions corrected or rejected
+- The course CSV was compared with the author's public data; all numeric values and missing entries matched.
+- Sample counts, wage groups, missing employment components and permanent versus temporary closures were checked against the paper and source documentation.
+- OLS coefficients were checked using NumPy least squares. The paired DiD was independently recomputed using Welch inference and a two-period within-store regression.
+- The extension's HC3 covariance matrix was checked against its sandwich formula, and the unadjusted ownership interaction against the four-cell difference.
+- Wage-bin counts and percentage totals were checked. A clean-copy rerun regenerated 22 table, figure and report files identically.
 
-1. An initial assertion treated SHEET as globally unique. Inspection found sheet 407 in different states for different restaurants; the assertion and identifier were corrected to use state plus sheet. No row was dropped.
-2. Candidate headcount formulas did not reproduce the paper's full-time percentage. The code uses EMPFT/FTE, as confirmed by the author's SAS program.
-3. Requiring both wage observations for every restaurant would exclude six permanent closures and produce only 351 regression observations. The closure exception restores N=357 and the published sample moments.
-4. A trial excluded nonoperating stores' reported second-wave operating variables. After inspecting the author's code, this blanket rule was rejected; the source values are retained, and the resulting Table 2 wage-point discrepancy is disclosed.
-5. The printed Table 4 model-v label suggests including ownership. The author's public SAS omits it. Both coherent specifications were computed, and the conflicting printed diagnostics were not mixed into a fabricated single model.
-6. A store-cluster variance estimator for the unequal-sample Table 3 row 3 does not reproduce every published SE. This uncertainty remains disclosed rather than replacing computed SEs with copied values.
-7. Original figure bin edges are not documented. Explicit bins and tail handling were chosen and documented; exact visual identity is not claimed.
+These are assistant-performed and automated validation checks. They are distinguished here from personal verification by the student and do not establish the research design's causal assumptions.
+
+## Corrections and unresolved differences
+
+Several initial coding assumptions were corrected during the AI-assisted workflow. SHEET was initially treated as a globally unique identifier; because sheet 407 appears in both states, the identifier was changed to state plus sheet without deleting a restaurant. The full-time percentage was corrected to EMPFT/FTE, consistent with the author's SAS program. The Table 4 wage screen was also corrected to retain six permanent closures, restoring the published 357-store sample rather than excluding them to obtain 351 observations.
+
+A trial rule excluding nonoperating stores' reported follow-up characteristics was rejected after checking the author's program. Reported source values were retained, and the remaining Table 2 differences were disclosed. For Table 4 model v, the printed ownership-control label conflicts with the author's public SAS specification. Both coherent specifications were computed and documented; statistics from different models were not combined to force agreement with the printed column.
+
+The Table 3 row-3 standard errors remain different from those published. The implemented variance estimator is documented, and computed values were not replaced with the paper's figures. Figure 1 uses explicit wage bins and tail treatment because the original figure does not specify these details; exact bar-for-bar reproduction is not claimed.
 
 ## Interpretation and responsibility
 
-The ownership interaction is not statistically precise, and adding baseline employment changes its sign. The report discloses these findings, the two-state inference limitation, the missing pre-trend test and remaining replication differences. Neither the assistant's checks nor a nonsignificant test establishes a causal null or equivalence. The author remains responsible for understanding the equations, sample choices and conclusions and for updating this disclosure if further assistance is used.
+All six ownership specifications are reported, including wide intervals and the sign change after controlling for baseline employment. The nonsignificant interaction is interpreted as limited evidence, not proof of equal effects. The report also explains the two-state inference limitation, the absence of a pre-trend test and the remaining replication discrepancies.
+
+I remain responsible for understanding and defending the data choices, empirical methods and conclusions in the submitted project. AI assistance and its associated checks do not transfer that responsibility. This disclosure should be updated if further assistance or personal verification is undertaken before submission.
